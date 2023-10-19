@@ -2,7 +2,7 @@
 
 **CodeS** is a series of **Code** LLMs specifically pre-trained for text-to-**S**QL. CodeS is **incrementally pre-trained** based on StarCoder using a large SQL-centric corpus. 
 
-The CodeS series encompasses four distinct scales: [CodeS-1B](https://huggingface.co/seeklhy/codes-1b), [CodeS-3B](https://huggingface.co/seeklhy/codes-3b), [CodeS-7B](https://huggingface.co/seeklhy/codes-7b), and [CodeS-15B](https://huggingface.co/seeklhy/codes-15b). CodeS-1B, 3B, and 7B are based on StarCoderBase-1B, 3B, and 7B and support the max length of 8,192. Meanwhile, CodeS-15B, derived from StarCoder-15B, accommodates sequences of up to 6,144 tokens due to computational constraints.
+The CodeS series encompasses four distinct scales: 1B, 3B, 7B, and 15B. CodeS-1B, 3B, and 7B are based on StarCoderBase-1B, 3B, and 7B and support the max length of 8,192. Meanwhile, CodeS-15B, derived from StarCoder-15B, accommodates sequences of up to 6,144 tokens due to computational constraints.
 
 ## Reproduce our results
 You can effortlessly replicate the results by utilizing the checkpoints and scripts we've released.
