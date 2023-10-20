@@ -286,7 +286,7 @@ if __name__ == "__main__":
         bird_results_dict = dict()
         for idx, (data, predicted_sql) in enumerate(zip(eval_set, predicted_sqls)):
             bird_results_dict[idx] = predicted_sql + "\t----- bird -----\t" + data["db_id"]
-        with open("predict_dev.json", "w") as f:
+        with open("predict_dev.json", "w", encoding = 'utf-8') as f:
             f.write(json.dumps(bird_results_dict, indent = 2, ensure_ascii = False))
         os.system("sh bird_evaluation/run_evaluation.sh {}".format("predict_dev.json"))
     elif "spider_dev" in opt.dataset_path:
