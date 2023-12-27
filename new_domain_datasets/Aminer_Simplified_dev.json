@@ -1,0 +1,487 @@
+[
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "How many 'Assistant Professor's work for Yale University?",
+    "query": "SELECT COUNT(*) FROM Author WHERE Author.position = 'Assistant Professor' AND Author.org = 'Yale University';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the pdf link to the most cited paper by authors at Tsinghua University?",
+    "query": "SELECT Paper.pdf FROM Paper JOIN (SELECT Paper_Authors.paper_id FROM Paper_Authors JOIN (SELECT Author.id FROM Author WHERE Author.org = 'Tsinghua University') AS Tsinghua ON Paper_Authors.author_id = Tsinghua.id) AS Tsinghua_Papers ON Paper.id = Tsinghua_Papers.paper_id ORDER BY Paper.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What are the keywords of Chou Mo's latest work?",
+    "query": "SELECT Paper_Keywords.keyword FROM Paper_Keywords JOIN (SELECT Paper_Authors.paper_id FROM Paper_Authors JOIN Author ON Paper_Authors.author_id = Author.id join paper on paper.id = paper_authors.paper_id WHERE Author.name = 'Chou Mo' ORDER BY Paper.year DESC LIMIT 1) AS LatestWork ON Paper_Keywords.paper_id = LatestWork.paper_id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "in terms of the citation per publication, who is the best one in Harvard University?",
+    "query": "SELECT Author.name, (CAST(SUM(Paper.n_citation) AS FLOAT) / COUNT(DISTINCT Paper.id)) as CitationPerPublication FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Author.org = 'Harvard University' GROUP BY Author.name ORDER BY CitationPerPublication DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "list papers published in 2016 that have number of citation bigger than average citation across all papers in all time.",
+    "query": "SELECT Paper.title, Paper.n_citation FROM Paper WHERE Paper.year = 2016 AND Paper.n_citation > (SELECT AVG(n_citation) FROM Paper);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the abstract of 'Optical geometries'?",
+    "query": "SELECT abstract FROM Paper WHERE title = 'Optical geometries';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Which research direction does Altarum Institute have the most members interested in?",
+    "query": "SELECT Researcher_Interests.tag FROM Researcher_Interests JOIN (SELECT Author.id FROM Author WHERE Author.org = 'Altarum Institute') AS Altarum_Scholars ON Researcher_Interests.author_id = Altarum_Scholars.id GROUP BY Researcher_Interests.tag ORDER BY COUNT(*) DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Please provide an abstract of the most cited articles from the journal China Practical Medicine.",
+    "query": "SELECT Paper.abstract FROM Paper JOIN (SELECT Venue_Papers.paper_id FROM Venue_Papers JOIN (SELECT id FROM Venue WHERE DisplayName = 'China Practical Medicine') AS CPM ON Venue_Papers.venue_id = CPM.id) AS CPM_Papers ON Paper.id = CPM_Papers.paper_id WHERE Paper.n_citation = (SELECT MAX(Paper.n_citation) FROM Paper JOIN (SELECT Venue_Papers.paper_id FROM Venue_Papers JOIN (SELECT id FROM Venue WHERE DisplayName = 'China Practical Medicine') AS CPM ON Venue_Papers.venue_id = CPM.id) AS CPM_Papers ON Paper.id = CPM_Papers.paper_id);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Among all institutions, which one has the most researchers?",
+    "query": "SELECT Author.org AS institution, COUNT(*) AS researcher_count FROM Author GROUP BY institution ORDER BY researcher_count DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Among researchers with a research interest in structure, who has the highest citation count?",
+    "query": "SELECT Author.name FROM Author JOIN Researcher_Interests ON Author.id = Researcher_Interests.author_id WHERE Researcher_Interests.tag = 'structure' ORDER BY Author.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "which year comes out the most papers?",
+    "query": "SELECT Paper.year, COUNT(*) as PaperCount FROM Paper GROUP BY Paper.year ORDER BY PaperCount DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "English = en; find papers which were written in English, return their total citation.",
+    "query": "SELECT SUM(Paper.n_citation) FROM Paper WHERE Paper.lang = 'en';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find me the link where can I see the article 'Partition functions of NAHE-based free fermionic string models'?",
+    "query": "SELECT paper.pdf FROM paper WHERE paper.title = 'Partition functions of NAHE-based free fermionic string models'"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "How many different research institutions did V. Gusmeroli involve in his or her research career?",
+    "query": "SELECT COUNT(DISTINCT Orgnization_Researchers.affiliation_name) FROM Orgnization_Researchers JOIN (SELECT Author.id FROM Author WHERE Author.name = 'V. Gusmeroli') AS Gusmeroli ON Orgnization_Researchers.author_id = Gusmeroli.id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "which conference has the highest average paper citation?",
+    "query": "SELECT Venue.DisplayName, AVG(Paper.n_citation) AS Average_Citations FROM Venue JOIN Venue_Papers ON Venue.id = Venue_Papers.venue_id JOIN Paper ON Venue_Papers.paper_id = Paper.id GROUP BY Venue.DisplayName ORDER BY Average_Citations DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "At 'Neural Networks: Tricks of the Trade', which orgnization has the highest number of published articles?",
+    "query": "SELECT Author.org FROM Paper_Authors JOIN Paper ON Paper_Authors.paper_id = Paper.id JOIN Author ON Paper_Authors.author_id = Author.id JOIN Venue_Papers ON Paper.id = Venue_Papers.paper_id JOIN Venue ON Venue_Papers.venue_id = Venue.id WHERE Venue.DisplayName = 'Neural Networks: Tricks of the Trade' GROUP BY Author.org ORDER BY COUNT(Paper.id) DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the most cited work of the researcheres with the h-index below 16?",
+    "query": "SELECT Paper.title, MAX(Paper.n_citation) AS MaxCitations FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.h_index < 16 GROUP BY Paper.title ORDER BY MaxCitations DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "In Rudi Studer's first work, what was his order as an author?",
+    "query": "SELECT Paper_Authors.rank FROM Paper_Authors JOIN Author ON Paper_Authors.author_id = Author.id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Author.name = 'Rudi Studer' ORDER BY Paper.year ASC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find Cheng Luo's current orgnizaiton's webpage.",
+    "query": "SELECT Affiliation.url FROM Author JOIN Affiliation ON Author.org = Affiliation.DisplayName WHERE Author.name = 'Cheng Luo';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "who is the scholar published most at 'Journal of Chemical Research-s' with his name start with 'J'.",
+    "query": "SELECT Author.name FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id JOIN Venue_Papers ON Paper.id = Venue_Papers.paper_id JOIN Venue ON Venue_Papers.venue_id = Venue.id WHERE Venue.DisplayName = 'Journal of Chemical Research-s' AND Author.name LIKE 'J%' GROUP BY Author.name ORDER BY COUNT(DISTINCT Paper.id) DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find venues that have published papers after 2009, show them in ascending order of paper count.",
+    "query": "SELECT Venue.DisplayName, COUNT(*) AS PaperCount FROM Venue JOIN Venue_Papers ON Venue.id = Venue_Papers.venue_id JOIN Paper ON Venue_Papers.paper_id = Paper.id WHERE Paper.year > 2009 GROUP BY Venue.id ORDER BY PaperCount ASC;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Who is the researcher with the highest number of published articles at the conference 'AMAI'?",
+    "query": "SELECT Author.name FROM Author WHERE Author.id = ( SELECT PA.author_id FROM ( SELECT VP.paper_id FROM Venue_Papers VP join venue on venue.id = VP.venue_id WHERE venue.DisplayName = 'AMAI' ) AS VPP JOIN Paper_Authors PA ON VPP.paper_id = PA.paper_id GROUP BY PA.author_id ORDER BY COUNT(PA.author_id) DESC LIMIT 1);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the number of citations for 'Neuroendocrinological and molecular aspects of insect reproduction.'?",
+    "query": "SELECT Paper.n_citation FROM Paper WHERE Paper.title = 'Neuroendocrinological and molecular aspects of insect reproduction.';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Among researchers currently belongs to South China Agricultural University, who have the most citation count?",
+    "query": "SELECT Author.name FROM Author WHERE Author.org = 'South China Agricultural University' ORDER BY Author.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "first author's rank is zero in the database; How many researcher once published papers as the first author?",
+    "query": "SELECT COUNT(*) FROM Paper_Authors WHERE Paper_Authors.rank = 0;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What are the top ten cited papers came from Argonne National Laboratory?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'Argonne National Laboratory') AS ANL_Scholars ON Paper_Authors.author_id = ANL_Scholars.id ORDER BY Paper.n_citation DESC LIMIT 10;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Which author at European Southern Observatory has been cited the most?",
+    "query": "SELECT Author.name FROM Author WHERE Author.org = 'European Southern Observatory' ORDER BY Author.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Please provide the abstract of Matthew L. Bochman's most recent work which has the keyword 'transcription'.",
+    "query": "SELECT Paper.abstract FROM Paper JOIN (SELECT paper_id FROM Paper_Keywords WHERE keyword = 'transcription') AS Keyword_Papers ON Paper.id = Keyword_Papers.paper_id JOIN (SELECT Paper_Authors.paper_id FROM Paper_Authors JOIN (SELECT id FROM Author WHERE name = 'Matthew L. Bochman') AS Matthew ON Paper_Authors.author_id = Matthew.id) AS Matthew_Papers ON Paper.id = Matthew_Papers.paper_id ORDER BY Paper.year DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Show me the institutions numbers that the paper 'Semantic Wikipedia.' each author once belonged to.",
+    "query": "SELECT Author.name, COUNT(DISTINCT Orgnization_Researchers.affiliation_name) as NumberOfInstitutions FROM Author JOIN Orgnization_Researchers ON Author.id = Orgnization_Researchers.author_id WHERE Author.id IN (     SELECT DISTINCT Paper_Authors.author_id     FROM Paper     JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id     WHERE Paper.title = 'Semantic Wikipedia.' ) GROUP BY Author.name;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "companies' type in affiliation table is 'company'; find the companies that have publication count above average.",
+    "query": "SELECT Affiliation.DisplayName, COUNT(DISTINCT Paper.id) as Number_of_Papers FROM Affiliation JOIN Author ON Affiliation.DisplayName = Author.org JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Affiliation.type = 'company' GROUP BY Affiliation.DisplayName HAVING Number_of_Papers > (SELECT AVG(PaperCount) FROM (SELECT COUNT(DISTINCT Paper.id) as PaperCount FROM Affiliation JOIN Author ON Affiliation.DisplayName = Author.org JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Affiliation.type = 'company' GROUP BY Affiliation.DisplayName));"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "high cited scholar is a scholar with more than 500 citation; what is the proportion of high cited scholars among all researchers?",
+    "query": "SELECT (CAST((SELECT COUNT(*) FROM Author WHERE n_citation > 500) AS FLOAT) / CAST((SELECT COUNT(*) FROM Author) AS FLOAT)) * 100 AS Proportion_High_Cited_Scholars FROM Author LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "How many publication's begin page greater than string '10'?",
+    "query": "SELECT COUNT(*) FROM Paper WHERE Paper.page_start > '10';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find researchers who write papers in at least two differenct languages.",
+    "query": "SELECT Author.name FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id GROUP BY Author.name HAVING COUNT(DISTINCT Paper.lang) >= 2;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "English = en; Which article published by David B. Bylund in English has the highest citation count?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.name = 'David B. Bylund') AS Bateer ON Paper_Authors.author_id = Bateer.id WHERE Paper.lang = 'en' ORDER BY Paper.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Who are the researchers once belong to University of Pittsburgh and share a research interest in depression?",
+    "query": "SELECT DISTINCT Author.name FROM Author JOIN Orgnization_Researchers ON Author.id = Orgnization_Researchers.author_id JOIN Researcher_Interests ON Author.id = Researcher_Interests.author_id WHERE Orgnization_Researchers.affiliation_name = 'University of Pittsburgh' AND Researcher_Interests.tag = 'depression';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "How many papers are contributed by S.P. Koh?",
+    "query": "SELECT COUNT(*) FROM Paper_Authors WHERE author_id = (SELECT id FROM Author WHERE name = 'S.P. Koh');"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find the most weighted interests for every reseacher at Harvard University and have more than 30 published articles.",
+    "query": "SELECT Author.name, Researcher_Interests.tag, MAX(Researcher_Interests.weight) AS Max_Weight FROM Author JOIN Researcher_Interests ON Author.id = Researcher_Interests.author_id WHERE Author.org = 'Harvard University' AND Author.n_pubs > 30 GROUP BY Author.name;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Which researcher at 'Communications, 1515 Broadway, New York, NY' has used most different keywords in their published articles?",
+    "query": "SELECT Author.name FROM Author JOIN (SELECT Paper_Authors.author_id, Comm_Keywords.keyword FROM Paper_Authors JOIN (SELECT DISTINCT Paper_Keywords.paper_id, Paper_Keywords.keyword FROM Paper_Keywords JOIN (SELECT Paper.id FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'Communications, 1515 Broadway, New York, NY') AS Comm_Authors ON Paper_Authors.author_id = Comm_Authors.id) AS Comm_Papers ON Paper_Keywords.paper_id = Comm_Papers.id) AS Comm_Keywords ON Paper_Authors.paper_id = Comm_Keywords.paper_id) AS Author_Keywords ON Author.id = Author_Keywords.author_id GROUP BY Author.id ORDER BY COUNT(DISTINCT Author_Keywords.keyword) DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "how many paper begins and ends at the same page?",
+    "query": "SELECT COUNT(*) FROM Paper WHERE Paper.page_start = Paper.page_end;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "in which institution scholars have most distinct research interest?",
+    "query": "SELECT Author.org, COUNT(DISTINCT Researcher_Interests.tag) as NumberOfDistinctInterests FROM Author JOIN Researcher_Interests ON Author.id = Researcher_Interests.author_id GROUP BY Author.org ORDER BY NumberOfDistinctInterests DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What are the research interests of the top five published authors in University of Southampton?",
+    "query": "SELECT Researcher_Interests.tag FROM Researcher_Interests WHERE Researcher_Interests.author_id IN (SELECT Author.id FROM Author WHERE Author.org = 'University of Southampton' ORDER BY Author.n_pubs DESC LIMIT 5);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "The latest year in the Paper table is the current time; The latest year in the Paper table is the current time; Which conference did Yale University have the most submissions in the ten years?",
+    "query": "SELECT Venue.DisplayName FROM Venue JOIN (SELECT Venue_Papers.venue_id, COUNT(*) AS submission_count FROM Venue_Papers JOIN (SELECT Paper.id FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'Yale University') AS Yale_Authors ON Paper_Authors.author_id = Yale_Authors.id WHERE Paper.year BETWEEN (SELECT MAX(Paper.year) FROM Paper) - 10 AND (SELECT MAX(Paper.year) FROM Paper)) AS Yale_Papers ON Venue_Papers.paper_id = Yale_Papers.id GROUP BY Venue_Papers.venue_id ORDER BY submission_count DESC LIMIT 1) AS Top_Venue ON Venue.id = Top_Venue.venue_id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "high cited scholar is a scholar with more than 500 citation; list all high cited scholar.",
+    "query": "SELECT Author.name FROM Author WHERE Author.n_citation > 500;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "By which author does keyword 'adaptive crane control system' most often appear in the research of AGH University of Science and Technology?",
+    "query": "SELECT Author.name FROM Author JOIN (SELECT Paper_Authors.author_id, COUNT(*) as count FROM Paper_Authors JOIN (SELECT Paper.id FROM Paper JOIN Paper_Keywords ON Paper.id = Paper_Keywords.paper_id WHERE Paper_Keywords.keyword = 'adaptive crane control system') AS Papers ON Paper_Authors.paper_id = Papers.id GROUP BY Paper_Authors.author_id) AS Author_Keyword_Count ON Author.id = Author_Keyword_Count.author_id WHERE Author.org = 'AGH University of Science and Technology' ORDER BY Author_Keyword_Count.count DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "English = en; Which researchers at FZI Forschungszentrum Informatik have published articles in English?",
+    "query": "SELECT DISTINCT Author.name FROM Author JOIN Paper_Authors ON Paper_Authors.author_id = Author.id JOIN Paper ON Paper.id = Paper_Authors.paper_id WHERE Author.org = 'FZI Forschungszentrum Informatik' AND Paper.lang = 'en';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "who wrote the papers with 23 keywords?",
+    "query": "SELECT Author.name FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN (SELECT Paper.id FROM Paper JOIN Paper_Keywords ON Paper.id = Paper_Keywords.paper_id GROUP BY Paper.id HAVING COUNT(*) = 23) AS Most_Keywords ON Paper_Authors.paper_id = Most_Keywords.id"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "high cited scholar is a scholar with more than 500 citation; tell me how many high cited scholars are there at each orgnization.",
+    "query": "SELECT Author.org, COUNT(*) as Number_of_High_Cited_Scholars FROM Author WHERE Author.n_citation > 500 GROUP BY Author.org;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Which author appears most frequently as the first author in WWW (Special interest tracks and posters)?",
+    "query": "SELECT Author.name FROM Author JOIN (SELECT Paper_Authors.author_id, COUNT(*) as count FROM Paper_Authors JOIN (SELECT Paper.id FROM Paper JOIN Venue_Papers ON Paper.id = Venue_Papers.paper_id JOIN Venue ON Venue.id = Venue_Papers.venue_id WHERE Venue.DisplayName = 'WWW (Special interest tracks and posters)') AS WWW_Papers ON Paper_Authors.paper_id = WWW_Papers.id WHERE Paper_Authors.rank = 1 GROUP BY Paper_Authors.author_id ORDER BY count DESC LIMIT 1) AS First_Author ON Author.id = First_Author.author_id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "list the scholars that have published papers in different languages.",
+    "query": "SELECT Author.name FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id GROUP BY Author.name HAVING COUNT(DISTINCT Paper.lang) > 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Which affiliation published the largest number of paper in 2016?",
+    "query": "SELECT Author.org, COUNT(*) FROM Author  JOIN (SELECT Paper_Authors.author_id FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id WHERE Paper.year = 2016) AS This_Year_Papers_Authors ON Author.id = This_Year_Papers_Authors.author_id GROUP BY Author.org ORDER BY COUNT(*) DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "second author's rank = 1; who ever wrote a paper as the second author after 2018?",
+    "query": "SELECT DISTINCT(Author.name) FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Paper_Authors.rank = 1 AND Paper.year > 2018;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "who have a citation yearly average above 50(in years that one published papers)?",
+    "query": "SELECT Author.name, (CAST(SUM(Paper.n_citation) AS FLOAT) / COUNT(DISTINCT Paper.year)) as YearlyAverageCitation FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id GROUP BY Author.name HAVING YearlyAverageCitation > 50;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "In what year was 'Learning via Finitely Many Queries.' published?",
+    "query": "SELECT Paper.year FROM Paper WHERE Paper.title = 'Learning via Finitely Many Queries.';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "among authors that published paper in 2015, what research interest has the most sum of weight?",
+    "query": "SELECT Researcher_Interests.tag, SUM(Researcher_Interests.weight) as TotalWeight FROM Researcher_Interests JOIN Paper_Authors ON Researcher_Interests.author_id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Paper.year = 2015 GROUP BY Researcher_Interests.tag ORDER BY TotalWeight DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "count the papers whose volume is empty string and abstract left null.",
+    "query": "SELECT COUNT(*) FROM Paper WHERE Paper.volume = '' AND Paper.abstract IS NULL;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What are the research interests of the authors at Cold Spring Harbor Laboratory?",
+    "query": "SELECT DISTINCT Researcher_Interests.tag FROM Researcher_Interests JOIN (SELECT Author.id FROM Author WHERE Author.org = 'Cold Spring Harbor Laboratory') AS CSHL_Authors ON Researcher_Interests.author_id = CSHL_Authors.id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What are the keywords of 3FunMap?",
+    "query": "SELECT Paper_Keywords.keyword FROM Paper JOIN Paper_Keywords ON Paper.id = Paper_Keywords.paper_id WHERE Paper.title = '3FunMap';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "calculate the citation of Joel L. Sussman by year, and rank them in descending order of citation.",
+    "query": "SELECT Paper.year, SUM(Paper.n_citation) as TotalCitations FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Joel L. Sussman' GROUP BY Paper.year ORDER BY TotalCitations DESC;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "which keyword has the most citation ever since 2016?",
+    "query": "SELECT Paper_Keywords.keyword, SUM(Paper.n_citation) as TotalCitations FROM Paper_Keywords JOIN Paper ON Paper_Keywords.paper_id = Paper.id WHERE Paper.year >= 2016 GROUP BY Paper_Keywords.keyword ORDER BY TotalCitations DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Who have a paper cited over 50% of his number of citation?",
+    "query": "SELECT Author.name FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Paper.n_citation > 0.5 * Author.n_citation;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find the researcher with the most number of citation and the researcher with the most published papers.",
+    "query": "SELECT name FROM Author WHERE n_citation = (SELECT MAX(n_citation) FROM Author) UNION ALL SELECT name FROM Author WHERE n_pubs = (SELECT MAX(n_pubs) FROM Author);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the digital object identifier of '01Climatagate'?",
+    "query": "SELECT Paper.doi FROM Paper WHERE Paper.title = '01Climatagate';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "companies' type in affiliation table is 'company'; find companies that contriubed more than 10 papers.",
+    "query": "SELECT Affiliation.DisplayName, COUNT(DISTINCT Paper.id) as Number_of_Papers FROM Affiliation JOIN Author ON Affiliation.DisplayName = Author.org JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id WHERE Affiliation.type = 'company' GROUP BY Affiliation.DisplayName HAVING Number_of_Papers > 10;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the most cited paper of University of Toronto?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'University of Toronto') AS UofT_Scholars ON Paper_Authors.author_id = UofT_Scholars.id WHERE Paper.n_citation = (SELECT MAX(Paper.n_citation) FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'University of Toronto') AS UofT_Scholars ON Paper_Authors.author_id = UofT_Scholars.id);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "for papers mentioned 'Machine Learning' in their abstract, show me their digital object identifer in reverse alphabetical order.",
+    "query": "SELECT Paper.title, Paper.doi FROM Paper WHERE Paper.abstract LIKE '%Machine Learning%' ORDER BY Paper.doi DESC;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "how many papers are shown in 'Physical Review Letters' per year on average?",
+    "query": "SELECT AVG(Paper_Count) AS Average_Papers_Per_Year FROM (SELECT Paper.year, COUNT(Paper.id) AS Paper_Count FROM Paper JOIN Venue_Papers ON Paper.id = Venue_Papers.paper_id JOIN Venue ON Venue_Papers.venue_id = Venue.id WHERE Venue.DisplayName = 'Physical Review Letters' GROUP BY Paper.year);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Among publications from the researchers currently at University of Pittsburgh with research interests in depression, which article has the highest citation count?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN (SELECT Uni_Author.id FROM (SELECT Author.id FROM Author WHERE Author.org = 'University of Pittsburgh') AS Uni_Author JOIN Researcher_Interests ON Uni_Author.id = Researcher_Interests.author_id WHERE Researcher_Interests.tag = 'depression') AS Author_Satisfied ON Author_Satisfied.id = Paper_Authors.author_id ORDER BY Paper.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the title of Heiko Haller's most cited work?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Heiko Haller' ORDER BY Paper.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What are the top five paper keywords in BMC Public Health?",
+    "query": "SELECT Paper_Keywords.keyword, COUNT(*) as count FROM Paper_Keywords JOIN Venue_Papers ON Venue_Papers.paper_id = Paper_Keywords.paper_id JOIN Venue ON Venue.id = Venue_Papers.venue_id WHERE Venue.DisplayName = 'BMC Public Health' GROUP BY Paper_Keywords.keyword ORDER BY count DESC LIMIT 5;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "calculate the average publication amount for each type of academic title, and rank them from high to low.",
+    "query": "SELECT Author.position, AVG(Author.n_pubs) AS AVG_Pubs FROM Author GROUP BY Author.position ORDER BY AVG_Pubs DESC;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "who publicated more paper than his citation?",
+    "query": "SELECT Author.name FROM Author WHERE Author.n_pubs > Author.n_citation;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the most highly cited article in articles included in 'Journal of The American Chemical Society'?",
+    "query": "SELECT Paper.title FROM Paper JOIN Venue_Papers ON Venue_Papers.paper_id = Paper.id JOIN (SELECT Venue.id FROM Venue WHERE Venue.DisplayName = 'Journal of The American Chemical Society') AS JACS ON Venue_Papers.venue_id = JACS.id WHERE Paper.n_citation = (SELECT MAX(Paper.n_citation) FROM Paper JOIN Venue_Papers ON Venue_Papers.paper_id = Paper.id JOIN (SELECT Venue.id FROM Venue WHERE Venue.DisplayName = 'Journal of The American Chemical Society') AS JACS ON Venue_Papers.venue_id = JACS.id);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What type of affiliation has the second most institutions?",
+    "query": "SELECT Affiliation.type FROM Affiliation GROUP BY Affiliation.type ORDER BY COUNT(*) DESC LIMIT 1 OFFSET 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "list all orgnizations with 'Conference' in their names.",
+    "query": "SELECT DisplayName FROM Affiliation WHERE DisplayName LIKE '%Conference%';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "list the most cited papers of each year, by their publishing time from latest to oldest.",
+    "query": "SELECT Paper.title, Paper.year, Paper.n_citation FROM Paper WHERE (Paper.year, Paper.n_citation) IN      (SELECT year, MAX(n_citation) as MaxCitationPerYear      FROM Paper      GROUP BY year) ORDER BY Paper.year DESC;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the academic title of Steve Lawrence now?",
+    "query": "SELECT Author.position FROM Author WHERE Author.name = 'Steve Lawrence';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Among the researchers at Dalian University of Technology with research interests in Validity, who has the highest number of publications?",
+    "query": "SELECT Author.name FROM Author JOIN (SELECT author_id FROM Researcher_Interests WHERE tag = 'Validity' AND author_id IN (SELECT id FROM Author WHERE org = 'Dalian University of Technology') ) AS Interests ON Author.id = Interests.author_id ORDER BY Author.n_pubs DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "English = en; Among papers written in English, which of them has the longest title? Give me their title, the length and its publication year.",
+    "query": "SELECT Paper.title, LENGTH(Paper.title) AS len, Paper.year FROM Paper WHERE len = (SELECT MAX(LENGTH(Paper.title)) FROM Paper);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Among the researchers Heiko Haller has collaborated with, who has research interest in human computer interaction?",
+    "query": "SELECT Researcher_Interests.author_id FROM Researcher_Interests WHERE Researcher_Interests.tag = 'human computer interaction' AND Researcher_Interests.author_id IN (SELECT Paper_Authors.author_id FROM Paper_Authors WHERE Paper_Authors.paper_id IN (SELECT Paper_Authors.paper_id FROM Paper_Authors JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Heiko Haller'));"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "English = en; The latest year in the Paper table is the current time; Find ids of top five institutions in terms of the number of papers submitted in English within five years.",
+    "query": "SELECT Affiliation.id, COUNT(*) as num_papers FROM Affiliation JOIN (SELECT Author.org FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN (SELECT id FROM Paper WHERE lang = 'en' AND year >= (SELECT MAX(year) - 5 FROM Paper)) AS Recent_English_Papers ON Paper_Authors.paper_id = Recent_English_Papers.id) AS English_Paper_Authors ON Affiliation.DisplayName = English_Paper_Authors.org GROUP BY Affiliation.id ORDER BY num_papers DESC LIMIT 5;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the number of citations for Yale Fan?",
+    "query": "SELECT Author.n_citation FROM Author WHERE Author.name = 'Yale Fan';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "show me the most frequent keyword of each year, in ascending of year.",
+    "query": "SELECT year, keyword, MAX(Frequency) as MaxFrequency FROM (SELECT Paper.year, Paper_Keywords.keyword, COUNT(Paper_Keywords.keyword) as Frequency FROM Paper JOIN Paper_Keywords ON Paper.id = Paper_Keywords.paper_id GROUP BY Paper.year, Paper_Keywords.keyword)  GROUP BY year ORDER BY year ASC;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "first author's rank equals to zero; in 2018, how many paper is published with a scholar from Harvard University as the first author?",
+    "query": "SELECT COUNT(DISTINCT Paper.id) as NumberOfPapers FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Paper.year = 2018  AND Paper_Authors.rank = 0  AND Author.org = 'Harvard University';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "In which conferences has Prashant Doshi published papers?",
+    "query": "SELECT DISTINCT Venue.DisplayName FROM Venue JOIN Venue_Papers ON Venue.id = Venue_Papers.venue_id JOIN (SELECT Paper.id FROM Paper JOIN (SELECT Paper_Authors.paper_id FROM Paper_Authors JOIN (SELECT Author.id FROM Author WHERE Author.name = 'Prashant Doshi') AS PD ON Paper_Authors.author_id = PD.id) AS PDP ON Paper.id = PDP.paper_id) AS PDP_Papers ON Venue_Papers.paper_id = PDP_Papers.id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "in which year papers have most distinct keywords?",
+    "query": "SELECT Paper.year, COUNT(DISTINCT Paper_Keywords.keyword) as NumberOfDistinctKeywords FROM Paper JOIN Paper_Keywords ON Paper.id = Paper_Keywords.paper_id GROUP BY Paper.year ORDER BY NumberOfDistinctKeywords DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "In which conference/journal was Daniel J. Berard's most recent work published?",
+    "query": "SELECT Venue.DisplayName FROM Venue JOIN Venue_Papers on Venue.id = Venue_Papers.Venue_id JOIN (SELECT Paper.id, Paper.year FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Daniel J. Berard' ORDER BY Paper.year DESC LIMIT 1) AS LatestPaper ON Venue_Papers.paper_id = LatestPaper.id;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Who is the most cited author in National Center for Atmospheric Research?",
+    "query": "SELECT Author.name FROM Author WHERE Author.org = 'National Center for Atmospheric Research' ORDER BY Author.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the most cited paper by the authors at University of California?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'University of California') AS UC_Authors ON Paper_Authors.author_id = UC_Authors.id WHERE Paper.n_citation = (SELECT MAX(Paper.n_citation) FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.org = 'University of California') AS UC_Authors ON Paper_Authors.author_id = UC_Authors.id);"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "In which year was Denny Vrandecic's first work published?",
+    "query": "SELECT MIN(Paper.year) AS FirstPublicationYear FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Denny Vrandecic';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the H-index of D. Raboso?",
+    "query": "SELECT Author.h_index FROM Author WHERE Author.name = 'D. Raboso';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "what is the different in citation of Bin Yuan's most recent work and oldest work.",
+    "query": "SELECT (MaxP.n_citation - MinP.n_citation) AS Citation_Difference FROM (SELECT Paper.n_citation FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Bin Yuan' ORDER BY Paper.year DESC LIMIT 1) AS MaxP, (SELECT Paper.n_citation FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Paper_Authors.author_id = Author.id WHERE Author.name = 'Bin Yuan' ORDER BY Paper.year ASC LIMIT 1) AS MinP;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "find the paper with longest abstract.",
+    "query": "SELECT Paper.title, LENGTH(Paper.abstract) as AbstractLength FROM Paper ORDER BY AbstractLength DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "What is the h-index of the author of the most cited single paper within UCSF School of Medicine?",
+    "query": "SELECT Author.h_index FROM Author JOIN (SELECT DISTINCT Paper_Authors.author_id FROM (SELECT Paper.id FROM Paper JOIN Paper_Authors ON Paper.id = Paper_Authors.paper_id JOIN Author ON Author.id = Paper_Authors.author_id WHERE Author.org = 'UCSF School of Medicine' ORDER BY Paper.n_citation DESC LIMIT 1) AS Most_Cited_UCSF JOIN Paper_Authors ON Paper_Authors.paper_id = Most_Cited_UCSF.id) AS Most_Cited_UCSF_Authors ON Author.id = Most_Cited_UCSF_Authors.author_id WHERE Author.org = 'UCSF School of Medicine'"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "which keyword appears most frequent so far?",
+    "query": "SELECT Paper_Keywords.keyword, COUNT(*) as Frequency FROM Paper_Keywords GROUP BY Paper_Keywords.keyword ORDER BY Frequency DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Which article by Jake Vanderplas has the highest citation count in his articles published in 2011?",
+    "query": "SELECT Paper.title FROM Paper JOIN Paper_Authors ON Paper_Authors.paper_id = Paper.id JOIN (SELECT Author.id FROM Author WHERE Author.name = 'Jake Vanderplas') AS Jake ON Paper_Authors.author_id = Jake.id WHERE Paper.year = 2011 ORDER BY Paper.n_citation DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "Find the paper titled '34957+70764=105621', tell me the volume of the publication it appeared on.",
+    "query": "SELECT volume FROM Paper WHERE Paper.title = '34957+70764=105621';"
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "question": "who have a publication yearly average greater than 3(in years that one published papers)?",
+    "query": "SELECT Author.name, (CAST(COUNT(DISTINCT Paper.id) AS FLOAT) / COUNT(DISTINCT Paper.year)) as YearlyAveragePublications FROM Author JOIN Paper_Authors ON Author.id = Paper_Authors.author_id JOIN Paper ON Paper_Authors.paper_id = Paper.id GROUP BY Author.name HAVING YearlyAveragePublications > 3;"
+  }
+]

@@ -1,0 +1,1763 @@
+[
+  {
+    "db_id": "Bank_Financials",
+    "table_names_original": [
+      "Basic_Info",
+      "Balance_Sheet",
+      "Income_Statement",
+      "Cash_Flow_Statement"
+    ],
+    "table_names": [
+      "Basic_Info",
+      "Balance_Sheet",
+      "Income_Statement",
+      "Cash_Flow_Statement"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "Stk_Code"
+      ],
+      [
+        0,
+        "Stk_Name"
+      ],
+      [
+        1,
+        "Stk_Code"
+      ],
+      [
+        1,
+        "Cash_CB"
+      ],
+      [
+        1,
+        "IB_Deposits"
+      ],
+      [
+        1,
+        "Prec_Metals"
+      ],
+      [
+        1,
+        "Lending_Funds"
+      ],
+      [
+        1,
+        "Trad_FAs"
+      ],
+      [
+        1,
+        "Deriv_Assets"
+      ],
+      [
+        1,
+        "Buyback_FAs"
+      ],
+      [
+        1,
+        "Int_Receiv"
+      ],
+      [
+        1,
+        "Loans_Adv"
+      ],
+      [
+        1,
+        "Avail_Sale_FAs"
+      ],
+      [
+        1,
+        "Held_Mat_Invest"
+      ],
+      [
+        1,
+        "Recv_Invest"
+      ],
+      [
+        1,
+        "LT_Eq_Invest"
+      ],
+      [
+        1,
+        "Inv_Real_Estate"
+      ],
+      [
+        1,
+        "Fix_Assets"
+      ],
+      [
+        1,
+        "Intang_Assets"
+      ],
+      [
+        1,
+        "Def_IT_Assets"
+      ],
+      [
+        1,
+        "Oth_Assets"
+      ],
+      [
+        1,
+        "Tot_Assets"
+      ],
+      [
+        1,
+        "Bor_CB"
+      ],
+      [
+        1,
+        "IB_Dep_Oth_FIs"
+      ],
+      [
+        1,
+        "Bor_Funds_Oth_FIs"
+      ],
+      [
+        1,
+        "Trad_Fin_Liab"
+      ],
+      [
+        1,
+        "Deriv_Liab"
+      ],
+      [
+        1,
+        "Sell_Rep_FAs"
+      ],
+      [
+        1,
+        "Acc_Deposits"
+      ],
+      [
+        1,
+        "Emp_Comp_PAY"
+      ],
+      [
+        1,
+        "Tax_Pay"
+      ],
+      [
+        1,
+        "Int_Pay"
+      ],
+      [
+        1,
+        "Est_Liab"
+      ],
+      [
+        1,
+        "Bonds_PAY"
+      ],
+      [
+        1,
+        "Def_IT_Liab"
+      ],
+      [
+        1,
+        "Oth_Liab"
+      ],
+      [
+        1,
+        "Tot_Liab"
+      ],
+      [
+        1,
+        "Paid_Up_Cap"
+      ],
+      [
+        1,
+        "Cap_Reserves"
+      ],
+      [
+        1,
+        "Treas_Stock"
+      ],
+      [
+        1,
+        "Sur_Reserves"
+      ],
+      [
+        1,
+        "Gen_Risk_Res"
+      ],
+      [
+        1,
+        "Undist_Profits"
+      ],
+      [
+        1,
+        "Exch_Diff_Cash"
+      ],
+      [
+        1,
+        "Own_Eq_Attr_Parent"
+      ],
+      [
+        1,
+        "Minor_Int_Eq"
+      ],
+      [
+        1,
+        "Tot_Own_Eq"
+      ],
+      [
+        1,
+        "Tot_Liab_Own_Eq"
+      ],
+      [
+        2,
+        "Stk_Code"
+      ],
+      [
+        2,
+        "Oper_Rev"
+      ],
+      [
+        2,
+        "Net_Int_Inc"
+      ],
+      [
+        2,
+        "Int_Inc"
+      ],
+      [
+        2,
+        "Int_Exp"
+      ],
+      [
+        2,
+        "Fee_Com_Net_Inc"
+      ],
+      [
+        2,
+        "Fee_Com_Inc"
+      ],
+      [
+        2,
+        "Fee_Com_Exp"
+      ],
+      [
+        2,
+        "Inv_Inc"
+      ],
+      [
+        2,
+        "Inv_Inc_Assoc_JV"
+      ],
+      [
+        2,
+        "FV_Change_Inc"
+      ],
+      [
+        2,
+        "Exch_Gain_Inc"
+      ],
+      [
+        2,
+        "Oth_Biz_Inc"
+      ],
+      [
+        2,
+        "Oper_Exp"
+      ],
+      [
+        2,
+        "Tax_n_Surs"
+      ],
+      [
+        2,
+        "Gen_n_Admin_Exps"
+      ],
+      [
+        2,
+        "Assets_Imp_Loss"
+      ],
+      [
+        2,
+        "Oth_Biz_Costs"
+      ],
+      [
+        2,
+        "Oper_Profit"
+      ],
+      [
+        2,
+        "Non_Op_Rev"
+      ],
+      [
+        2,
+        "Non_Op_Exp"
+      ],
+      [
+        2,
+        "Loss_Disposal_Nonc_Assets"
+      ],
+      [
+        2,
+        "Tot_Profit"
+      ],
+      [
+        2,
+        "Income_Tax_Exp"
+      ],
+      [
+        2,
+        "Net_Profit"
+      ],
+      [
+        2,
+        "Attr_Parent_Net_Profit"
+      ],
+      [
+        2,
+        "Minor_Int_Inc_Loss"
+      ],
+      [
+        2,
+        "Basic_EPS"
+      ],
+      [
+        2,
+        "Diluted_EPS"
+      ],
+      [
+        2,
+        "Oth_Compre_Inc"
+      ],
+      [
+        2,
+        "Tot_Compre_Inc"
+      ],
+      [
+        2,
+        "Attr_Parent_Shareholders_Compre_Inc"
+      ],
+      [
+        2,
+        "Minor_Int_Shareholders_Compre_Inc"
+      ],
+      [
+        3,
+        "Stk_Code"
+      ],
+      [
+        3,
+        "Net_Inc_Cust_Deposits_IB_Deposits"
+      ],
+      [
+        3,
+        "Net_Inc_Borrowings_CB"
+      ],
+      [
+        3,
+        "Net_Inc_IB_Borrowings"
+      ],
+      [
+        3,
+        "Cash_Int_Commission_Collected"
+      ],
+      [
+        3,
+        "Cash_Oth_Oper_Activities"
+      ],
+      [
+        3,
+        "Op_CF_Sub"
+      ],
+      [
+        3,
+        "Cust_Loans_Net_Inc"
+      ],
+      [
+        3,
+        "CenBank_Interbank_Net_Inc"
+      ],
+      [
+        3,
+        "Cash_Pay_Int_Fees_Com"
+      ],
+      [
+        3,
+        "Cash_Pay_Emp"
+      ],
+      [
+        3,
+        "Cash_Pay_Taxes"
+      ],
+      [
+        3,
+        "Cash_Pay_Op_Other"
+      ],
+      [
+        3,
+        "Op_CF_Out_Sub"
+      ],
+      [
+        3,
+        "Net_CF_Op"
+      ],
+      [
+        3,
+        "Recv_Investment"
+      ],
+      [
+        3,
+        "Investment_Income"
+      ],
+      [
+        3,
+        "Cash_Disposal_Assets"
+      ],
+      [
+        3,
+        "Recv_Other_Invest"
+      ],
+      [
+        3,
+        "Inv_CF_In_Sub"
+      ],
+      [
+        3,
+        "Cash_Pay_Invest"
+      ],
+      [
+        3,
+        "Cash_Pay_Assets"
+      ],
+      [
+        3,
+        "Cash_Pay_Inv_Other"
+      ],
+      [
+        3,
+        "Inv_CF_Out_Sub"
+      ],
+      [
+        3,
+        "Net_CF_Inv"
+      ],
+      [
+        3,
+        "Absorb_Investment"
+      ],
+      [
+        3,
+        "Subsidiary_Absorb_Minority"
+      ],
+      [
+        3,
+        "Issue_Bonds"
+      ],
+      [
+        3,
+        "Recv_Other_Fin"
+      ],
+      [
+        3,
+        "Fin_CF_In_Sub"
+      ],
+      [
+        3,
+        "Repay_Debt"
+      ],
+      [
+        3,
+        "Distribute_Dividends_Profits"
+      ],
+      [
+        3,
+        "Subsidiary_Pay_Minority"
+      ],
+      [
+        3,
+        "Cash_Pay_Fin_Other"
+      ],
+      [
+        3,
+        "Fin_CF_Out_Sub"
+      ],
+      [
+        3,
+        "Net_CF_Fin"
+      ],
+      [
+        3,
+        "FX_Rate_Change_Cash"
+      ],
+      [
+        3,
+        "Net_CF_Cash_Equiv"
+      ],
+      [
+        3,
+        "Initial_Cash_Equiv"
+      ],
+      [
+        3,
+        "Final_Cash_Equiv"
+      ],
+      [
+        3,
+        "CF_Stmt_Net_Income"
+      ],
+      [
+        3,
+        "Asset_Impairment_Dec"
+      ],
+      [
+        3,
+        "Fixed_Asset_Dep_Amort_Dec"
+      ],
+      [
+        3,
+        "Intangible_Asset_Amortization"
+      ],
+      [
+        3,
+        "Longterm_Amortization"
+      ],
+      [
+        3,
+        "Loss_Disposal_Fixed_Assets_Dec"
+      ],
+      [
+        3,
+        "Fixed_Asset_Scrap_Loss"
+      ],
+      [
+        3,
+        "Fair_Value_Change_Loss"
+      ],
+      [
+        3,
+        "CF_Stmt_Fin_Expenses"
+      ],
+      [
+        3,
+        "Investment_Loss"
+      ],
+      [
+        3,
+        "DIT_Asset_Reduction"
+      ],
+      [
+        3,
+        "DIT_Liability_Increase"
+      ],
+      [
+        3,
+        "Inventory_Decrease"
+      ],
+      [
+        3,
+        "Oper_Receivables_Decrease"
+      ],
+      [
+        3,
+        "Oper_Payables_Increase"
+      ],
+      [
+        3,
+        "Other"
+      ],
+      [
+        3,
+        "IM_NCF_Oper_Activities"
+      ],
+      [
+        3,
+        "Debt_Converted_Capital"
+      ],
+      [
+        3,
+        "Conv_Bonds_Maturing_Within_1Y"
+      ],
+      [
+        3,
+        "Fin_Lease_Additions_Fixed_Assets"
+      ],
+      [
+        3,
+        "Cash_End_Period"
+      ],
+      [
+        3,
+        "Cash_Begin_Period"
+      ],
+      [
+        3,
+        "Cash_Eq_End_Period"
+      ],
+      [
+        3,
+        "Cash_Eq_Begin_Period"
+      ],
+      [
+        3,
+        "IM_NCF_Cash_Eq"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "Securities code"
+      ],
+      [
+        0,
+        "Securities Name"
+      ],
+      [
+        1,
+        "Securities code"
+      ],
+      [
+        1,
+        "Cash and deposits with central bank (in Yuan)"
+      ],
+      [
+        1,
+        "Due from interbank deposits (in Yuan)"
+      ],
+      [
+        1,
+        "noble metal (in Yuan)"
+      ],
+      [
+        1,
+        "Lending funds (in Yuan)"
+      ],
+      [
+        1,
+        "Trading financial assets (in Yuan)"
+      ],
+      [
+        1,
+        "Derivative financial assets (in Yuan)"
+      ],
+      [
+        1,
+        "Purchase of resale financial assets (in Yuan)"
+      ],
+      [
+        1,
+        "Interest receivable (in Yuan)"
+      ],
+      [
+        1,
+        "Issuance of loans and advances (in Yuan)"
+      ],
+      [
+        1,
+        "Available-for-sale financial assets (in Yuan)"
+      ],
+      [
+        1,
+        "Held-to-maturity investments (in Yuan)"
+      ],
+      [
+        1,
+        "Accounts receivable investment (in Yuan)"
+      ],
+      [
+        1,
+        "Long term equity investment (in Yuan)"
+      ],
+      [
+        1,
+        "Investment real estate (in Yuan)"
+      ],
+      [
+        1,
+        "fixed assets (in Yuan)"
+      ],
+      [
+        1,
+        "intangible assets (in Yuan)"
+      ],
+      [
+        1,
+        "deferred tax assets (in Yuan)"
+      ],
+      [
+        1,
+        "other assets (in Yuan)"
+      ],
+      [
+        1,
+        "Total Assets (in Yuan)"
+      ],
+      [
+        1,
+        "Borrowing from the Central Bank (in Yuan)"
+      ],
+      [
+        1,
+        "Deposits from interbank and other financial institutions (in Yuan)"
+      ],
+      [
+        1,
+        "Borrowing funds (in Yuan)"
+      ],
+      [
+        1,
+        "Trading financial liabilities (in Yuan)"
+      ],
+      [
+        1,
+        "Derivative financial liabilities (in Yuan)"
+      ],
+      [
+        1,
+        "Financial Assets Sold for Repurchase (in Yuan)"
+      ],
+      [
+        1,
+        "Deposit absorption (in Yuan)"
+      ],
+      [
+        1,
+        "Payable employee compensation (in Yuan)"
+      ],
+      [
+        1,
+        "Taxes and fees payable (in Yuan)"
+      ],
+      [
+        1,
+        "Interest payable (in Yuan)"
+      ],
+      [
+        1,
+        "Estimated liabilities (in Yuan)"
+      ],
+      [
+        1,
+        "Bonds payable (in Yuan)"
+      ],
+      [
+        1,
+        "Deferred Tax Liability (in Yuan)"
+      ],
+      [
+        1,
+        "Other liabilities (in Yuan)"
+      ],
+      [
+        1,
+        "Total liabilities (in Yuan)"
+      ],
+      [
+        1,
+        "Paid-in capital (or share capital) (in Yuan)"
+      ],
+      [
+        1,
+        "Capital reserve (in Yuan)"
+      ],
+      [
+        1,
+        "Treasury stock (in Yuan)"
+      ],
+      [
+        1,
+        "Surplus reserves (in Yuan)"
+      ],
+      [
+        1,
+        "General risk preparation (in Yuan)"
+      ],
+      [
+        1,
+        "Undistributed profits (in Yuan)"
+      ],
+      [
+        1,
+        "Translation difference of foreign currency statements (in Yuan)"
+      ],
+      [
+        1,
+        "Total owner's equity attributable to the parent company (in Yuan)"
+      ],
+      [
+        1,
+        "Minority shareholders' equity (in Yuan)"
+      ],
+      [
+        1,
+        "Total owner's equity (in Yuan)"
+      ],
+      [
+        1,
+        "Total liabilities and owner's equity (in Yuan)"
+      ],
+      [
+        2,
+        "Securities code"
+      ],
+      [
+        2,
+        "Operating income (in Yuan)"
+      ],
+      [
+        2,
+        "Net interest income (in Yuan)"
+      ],
+      [
+        2,
+        "Interest income (in Yuan)"
+      ],
+      [
+        2,
+        "Interest expenses (in Yuan)"
+      ],
+      [
+        2,
+        "Net income from handling fees and commissions (in Yuan)"
+      ],
+      [
+        2,
+        "Fee and commission income (in Yuan)"
+      ],
+      [
+        2,
+        "Handling fees and commission expenses (in Yuan)"
+      ],
+      [
+        2,
+        "Investment income (in Yuan)"
+      ],
+      [
+        2,
+        "Investment income from associates and joint ventures (in Yuan)"
+      ],
+      [
+        2,
+        "Income from changes in fair value (in Yuan)"
+      ],
+      [
+        2,
+        "Exchange gains (in Yuan)"
+      ],
+      [
+        2,
+        "Other business income (in Yuan)"
+      ],
+      [
+        2,
+        "Operating expenses (in Yuan)"
+      ],
+      [
+        2,
+        "Taxes and surcharges (in Yuan)"
+      ],
+      [
+        2,
+        "Business and management fees (in Yuan)"
+      ],
+      [
+        2,
+        "assets impairment loss (in Yuan)"
+      ],
+      [
+        2,
+        "Other business costs (in Yuan)"
+      ],
+      [
+        2,
+        "operating profit (in Yuan)"
+      ],
+      [
+        2,
+        "Non operating income (in Yuan)"
+      ],
+      [
+        2,
+        "Non operating expenses (in Yuan)"
+      ],
+      [
+        2,
+        "Loss on disposal of non current assets (in Yuan)"
+      ],
+      [
+        2,
+        "Total profit (in Yuan)"
+      ],
+      [
+        2,
+        "Income tax expenses (in Yuan)"
+      ],
+      [
+        2,
+        "Net profit (in Yuan)"
+      ],
+      [
+        2,
+        "Net profit attributable to the owner of the parent company (in Yuan)"
+      ],
+      [
+        2,
+        "Minority interest (in Yuan)"
+      ],
+      [
+        2,
+        "Basic earnings per share (in Yuan)"
+      ],
+      [
+        2,
+        "Diluted earnings per share (in Yuan)"
+      ],
+      [
+        2,
+        "Other comprehensive income (in Yuan)"
+      ],
+      [
+        2,
+        "Total comprehensive income (in Yuan)"
+      ],
+      [
+        2,
+        "Total comprehensive income attributable to shareholders of the parent company (in Yuan)"
+      ],
+      [
+        2,
+        "Total comprehensive income attributable to minority shareholders (in Yuan)"
+      ],
+      [
+        3,
+        "Securities code"
+      ],
+      [
+        3,
+        "Net increase in customer deposits and interbank deposits (in Yuan)"
+      ],
+      [
+        3,
+        "Net increase in borrowings from the central bank (in Yuan)"
+      ],
+      [
+        3,
+        "Net increase in borrowing funds from other financial institutions (in Yuan)"
+      ],
+      [
+        3,
+        "Cash received for interest, handling fees, and commissions (in Yuan)"
+      ],
+      [
+        3,
+        "Received other cash related to operating activities (in Yuan)"
+      ],
+      [
+        3,
+        "Subtotal of cash inflows from operating activities (in Yuan)"
+      ],
+      [
+        3,
+        "Net increase in customer loans and advances (in Yuan)"
+      ],
+      [
+        3,
+        "Net increase in deposits with central bank and interbank funds (in Yuan)"
+      ],
+      [
+        3,
+        "Cash paid for interest, handling fees, and commissions (in Yuan)"
+      ],
+      [
+        3,
+        "Cash paid to and on behalf of employees (in Yuan)"
+      ],
+      [
+        3,
+        "Various taxes and fees paid (in Yuan)"
+      ],
+      [
+        3,
+        "Other cash payments related to operating activities (in Yuan)"
+      ],
+      [
+        3,
+        "Subtotal of cash outflows from operating activities (in Yuan)"
+      ],
+      [
+        3,
+        "Net cash flow generated from operating activities (in Yuan)"
+      ],
+      [
+        3,
+        "Cash received from investment recovery (in Yuan)"
+      ],
+      [
+        3,
+        "Cash received from obtaining investment income (in Yuan)"
+      ],
+      [
+        3,
+        "Net cash received from disposal of fixed assets, intangible assets, and other long-term assets (in Yuan)"
+      ],
+      [
+        3,
+        "Received other cash related to investment activities (in Yuan)"
+      ],
+      [
+        3,
+        "Subtotal of cash inflows from investment activities (in Yuan)"
+      ],
+      [
+        3,
+        "Cash paid for investment (in Yuan)"
+      ],
+      [
+        3,
+        "Cash paid for the purchase and construction of fixed assets, intangible assets, and other long-term assets (in Yuan)"
+      ],
+      [
+        3,
+        "Other cash payments related to investment activities (in Yuan)"
+      ],
+      [
+        3,
+        "Subtotal of cash outflows from investment activities (in Yuan)"
+      ],
+      [
+        3,
+        "Net cash flow generated from investment activities (in Yuan)"
+      ],
+      [
+        3,
+        "Cash received from absorbing investments (in Yuan)"
+      ],
+      [
+        3,
+        "Cash received from subsidiaries absorbing minority shareholder investments (in Yuan)"
+      ],
+      [
+        3,
+        "Cash received from issuing bonds (in Yuan)"
+      ],
+      [
+        3,
+        "Received other cash related to financing activities (in Yuan)"
+      ],
+      [
+        3,
+        "Subtotal of cash inflows from financing activities (in Yuan)"
+      ],
+      [
+        3,
+        "Cash paid for debt repayment (in Yuan)"
+      ],
+      [
+        3,
+        "Cash paid for distributing dividends, profits, or paying interest (in Yuan)"
+      ],
+      [
+        3,
+        "Dividends and profits paid by subsidiaries to minority shareholders (in Yuan)"
+      ],
+      [
+        3,
+        "Other cash payments related to financing activities (in Yuan)"
+      ],
+      [
+        3,
+        "Subtotal of cash outflows from financing activities (in Yuan)"
+      ],
+      [
+        3,
+        "Net cash flow generated from financing activities (in Yuan)"
+      ],
+      [
+        3,
+        "The impact of exchange rate changes on cash and cash equivalents (in Yuan)"
+      ],
+      [
+        3,
+        "Net increase in cash and cash equivalents (in Yuan)"
+      ],
+      [
+        3,
+        "Opening balance of cash and cash equivalents (in Yuan)"
+      ],
+      [
+        3,
+        "Closing balance of cash and cash equivalents (in Yuan)"
+      ],
+      [
+        3,
+        "Cash Flow Statement - Net Profit (in Yuan)"
+      ],
+      [
+        3,
+        "Asset impairment provision (in Yuan)"
+      ],
+      [
+        3,
+        "Depreciation of fixed assets, depletion of oil and gas assets, and depreciation of productive biological assets (in Yuan)"
+      ],
+      [
+        3,
+        "Amortization of intangible assets (in Yuan)"
+      ],
+      [
+        3,
+        "Amortization of long-term deferred expenses (in Yuan)"
+      ],
+      [
+        3,
+        "Losses on disposal of fixed assets, intangible assets, and other long-term assets (in Yuan)"
+      ],
+      [
+        3,
+        "Loss on scrapping of fixed assets (in Yuan)"
+      ],
+      [
+        3,
+        "Loss from changes in fair value (in Yuan)"
+      ],
+      [
+        3,
+        "Cash Flow Statement - Financial Expenses (in Yuan)"
+      ],
+      [
+        3,
+        "Investment losses (in Yuan)"
+      ],
+      [
+        3,
+        "Decrease in deferred income tax assets (in Yuan)"
+      ],
+      [
+        3,
+        "Increase in deferred income tax liabilities (in Yuan)"
+      ],
+      [
+        3,
+        "Decrease in inventory (in Yuan)"
+      ],
+      [
+        3,
+        "Reduction in operating receivables (in Yuan)"
+      ],
+      [
+        3,
+        "Increase in operating payables (in Yuan)"
+      ],
+      [
+        3,
+        "other (in Yuan)"
+      ],
+      [
+        3,
+        "Indirect method - net cash flow generated from operating activities (in Yuan)"
+      ],
+      [
+        3,
+        "Debt converted to capital (in Yuan)"
+      ],
+      [
+        3,
+        "Convertible corporate bonds maturing within one year (in Yuan)"
+      ],
+      [
+        3,
+        "Fixed assets acquired through financing lease (in Yuan)"
+      ],
+      [
+        3,
+        "Closing balance of cash (in Yuan)"
+      ],
+      [
+        3,
+        "Opening balance of cash (in Yuan)"
+      ],
+      [
+        3,
+        "Closing balance of cash equivalents (in Yuan)"
+      ],
+      [
+        3,
+        "Opening balance of cash equivalents (in Yuan)"
+      ],
+      [
+        3,
+        "Indirect method - net increase in cash and cash equivalents (in Yuan)"
+      ]
+    ],
+    "column_types": [
+      "text",
+      "text",
+      "text",
+      "text",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "text",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "text",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real",
+      "real"
+    ],
+    "foreign_keys": [
+      [
+        3,
+        1
+      ],
+      [
+        49,
+        1
+      ],
+      [
+        82,
+        1
+      ]
+    ],
+    "primary_keys": [
+      1
+    ]
+  },
+  {
+    "db_id": "Aminer_Simplified",
+    "table_names_original": [
+      "Venue",
+      "Affiliation",
+      "Author",
+      "Paper",
+      "Venue_Papers",
+      "Paper_Keywords",
+      "Paper_Authors",
+      "Orgnization_Researchers",
+      "Researcher_Interests"
+    ],
+    "table_names": [
+      "Venue",
+      "Affiliation",
+      "Author",
+      "Paper",
+      "Venue_Papers",
+      "Paper_Keywords",
+      "Paper_Authors",
+      "Orgnization_Researchers",
+      "Researcher_Interests"
+    ],
+    "column_names_original": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "id"
+      ],
+      [
+        0,
+        "DisplayName"
+      ],
+      [
+        1,
+        "id"
+      ],
+      [
+        1,
+        "DisplayName"
+      ],
+      [
+        1,
+        "type"
+      ],
+      [
+        1,
+        "url"
+      ],
+      [
+        2,
+        "id"
+      ],
+      [
+        2,
+        "name"
+      ],
+      [
+        2,
+        "org"
+      ],
+      [
+        2,
+        "position"
+      ],
+      [
+        2,
+        "n_pubs"
+      ],
+      [
+        2,
+        "n_citation"
+      ],
+      [
+        2,
+        "h_index"
+      ],
+      [
+        3,
+        "id"
+      ],
+      [
+        3,
+        "title"
+      ],
+      [
+        3,
+        "year"
+      ],
+      [
+        3,
+        "n_citation"
+      ],
+      [
+        3,
+        "page_start"
+      ],
+      [
+        3,
+        "page_end"
+      ],
+      [
+        3,
+        "lang"
+      ],
+      [
+        3,
+        "volume"
+      ],
+      [
+        3,
+        "doi"
+      ],
+      [
+        3,
+        "pdf"
+      ],
+      [
+        3,
+        "abstract"
+      ],
+      [
+        4,
+        "venue_id"
+      ],
+      [
+        4,
+        "paper_id"
+      ],
+      [
+        5,
+        "paper_id"
+      ],
+      [
+        5,
+        "keyword"
+      ],
+      [
+        6,
+        "paper_id"
+      ],
+      [
+        6,
+        "rank"
+      ],
+      [
+        6,
+        "author_id"
+      ],
+      [
+        7,
+        "affiliation_name"
+      ],
+      [
+        7,
+        "author_id"
+      ],
+      [
+        8,
+        "author_id"
+      ],
+      [
+        8,
+        "tag"
+      ],
+      [
+        8,
+        "weight"
+      ]
+    ],
+    "column_names": [
+      [
+        -1,
+        "*"
+      ],
+      [
+        0,
+        "id"
+      ],
+      [
+        0,
+        "name of the conferenece/joural"
+      ],
+      [
+        1,
+        "id"
+      ],
+      [
+        1,
+        "name of the orgnization"
+      ],
+      [
+        1,
+        "orgnization type"
+      ],
+      [
+        1,
+        "link of the orgnization's homepage"
+      ],
+      [
+        2,
+        "id"
+      ],
+      [
+        2,
+        "name"
+      ],
+      [
+        2,
+        "author's current orgnization"
+      ],
+      [
+        2,
+        "position"
+      ],
+      [
+        2,
+        "number of paper publication"
+      ],
+      [
+        2,
+        "number of total citation"
+      ],
+      [
+        2,
+        "h-index"
+      ],
+      [
+        3,
+        "id"
+      ],
+      [
+        3,
+        "title"
+      ],
+      [
+        3,
+        "publication year"
+      ],
+      [
+        3,
+        "number of citation"
+      ],
+      [
+        3,
+        "start page on the publication"
+      ],
+      [
+        3,
+        "end page on the publication"
+      ],
+      [
+        3,
+        "language"
+      ],
+      [
+        3,
+        "volume of the publicaiton"
+      ],
+      [
+        3,
+        "digital object unique identifier"
+      ],
+      [
+        3,
+        "pdf view link of the paper"
+      ],
+      [
+        3,
+        "paper abstract"
+      ],
+      [
+        4,
+        "venue_id"
+      ],
+      [
+        4,
+        "paper_id"
+      ],
+      [
+        5,
+        "paper_id"
+      ],
+      [
+        5,
+        "a keyword of the paper"
+      ],
+      [
+        6,
+        "paper_id"
+      ],
+      [
+        6,
+        "this author's rank"
+      ],
+      [
+        6,
+        "author_id"
+      ],
+      [
+        7,
+        "name of affiliation that this researcher once belonged to"
+      ],
+      [
+        7,
+        "author_id"
+      ],
+      [
+        8,
+        "author_id"
+      ],
+      [
+        8,
+        "research interest"
+      ],
+      [
+        8,
+        "weight of this interest"
+      ]
+    ],
+    "column_types": [
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "integer",
+      "integer",
+      "integer",
+      "text",
+      "text",
+      "integer",
+      "integer",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "integer",
+      "text",
+      "text",
+      "text",
+      "text",
+      "text",
+      "integer"
+    ],
+    "foreign_keys": [
+      [
+        25,
+        1
+      ],
+      [
+        26,
+        14
+      ],
+      [
+        27,
+        14
+      ],
+      [
+        29,
+        14
+      ],
+      [
+        31,
+        7
+      ],
+      [
+        33,
+        7
+      ],
+      [
+        34,
+        7
+      ]
+    ],
+    "primary_keys": [
+      1,
+      3,
+      7,
+      14
+    ]
+  }
+]

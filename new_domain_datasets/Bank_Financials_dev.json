@@ -1,0 +1,457 @@
+[
+  {
+    "db_id": "Bank_Financials",
+    "question": "What are the interest income and net interest income of China Construction Bank?",
+    "query": "SELECT b.Stk_Name, i.Int_Inc, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the net income from fees and commissions of China Construction Bank?",
+    "query": "SELECT b.Stk_Name, i.Fee_Com_Net_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the total operating income of China Construction Bank in millions of yuan?",
+    "query": "SELECT b.Stk_Name, i.Oper_Rev / 1000000 FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the tax and surcharge amount of China Construction Bank?",
+    "query": "SELECT b.Stk_Name, i.Tax_n_Surs FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What are the business and management fees and impairment losses on assets of China Construction Bank?",
+    "query": "SELECT b.Stk_Name, i.Gen_n_Admin_Exps, i.Assets_Imp_Loss FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the net interest income of China Construction Bank?",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the amount of interest receivable for China Construction Bank?",
+    "query": "SELECT b.Stk_Name, s.Int_Receiv  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "I want to compare the precious metal assets of Bank of China and Industrial and Commercial Bank of China, what are their respective precious metal assets?",
+    "query": "SELECT b.Stk_Name, s.Prec_Metals FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE b.Stk_Name  IN  ('Bank of China', 'Industrial and Commercial Bank of China');"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which banks have a positive net interest income?",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Net_Int_Inc > 0;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the banks where precious metal assets account for more than 0.5% of total assets.",
+    "query": "SELECT b.Stk_Name, (s.Prec_Metals / s.Tot_Assets) FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Prec_Metals / s.Tot_Assets > 0.005;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the banks where the long-term equity investment exceeds the real estate investment.",
+    "query": "SELECT b.Stk_Name, s.LT_Eq_Invest, s.Inv_Real_Estate FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.LT_Eq_Invest > s.Inv_Real_Estate;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "I heard that some banks have a large investment in fixed assets, which bank's fixed assets exceed 50 billion yuan?",
+    "query": "SELECT b.Stk_Name, s.Fix_Assets FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Fix_Assets > 50000000000;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "I want to know which banks have borrowed more from other financial institutions than their interbank deposits.",
+    "query": "SELECT b.Stk_Name, s.Bor_Funds_Oth_Fis, s.IB_Deposits FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Bor_Funds_Oth_FIs > s.IB_Deposits;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find out the banks with operating income over 10 billion yuan.",
+    "query": "SELECT b.Stk_Name, i.Oper_Rev  FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Oper_Rev > 10000000000;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find banks with paid-in capital less than 5 billion yuan.",
+    "query": "SELECT b.Stk_Name, s.Paid_Up_Cap FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Paid_Up_Cap < 5000000000;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List the banks with paid-in capital exceeding 10 billion yuan and total profit exceeding 1 billion yuan.",
+    "query": "SELECT b.Stk_Name, s.Paid_Up_Cap, i.Tot_Profit FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code JOIN Balance_Sheet s ON b.Stk_Code = s.Stk_Code WHERE s.Paid_Up_Cap > 10000000000 AND i.Tot_Profit >= 1000000000;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which banks have operating expenses less than 50% of their operating income?",
+    "query": "SELECT b.Stk_Name, (i.Oper_Exp/ i.Oper_Rev) FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Oper_Exp < 0.5 * i.Oper_Rev;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List all banks with liabilities greater than 75% their assets and arrange them by the ratio from high to low.",
+    "query": "SELECT Stk_Name, Liability_Ratio FROM (     SELECT b.Stk_Name, (s.Tot_Liab / s.Tot_Assets) AS Liability_Ratio      FROM Basic_Info b     JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ) AS subquery WHERE Liability_Ratio > 0.75 ORDER BY Liability_Ratio DESC;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Sort the banks by net interest income from high to low.",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY i.Net_Int_Inc DESC;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Give me the top three banks with the highest net interest income.",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY i.Net_Int_Inc DESC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the top 5 banks in terms of total assets.",
+    "query": "SELECT b.Stk_Name, s.Tot_Assets  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY s.Tot_Assets DESC  LIMIT 5;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the top 5 banks with the most fixed assets.",
+    "query": "SELECT b.Stk_Name, s.Fix_Assets  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY s.Fix_Assets DESC  LIMIT 5;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Give me the three banks with the lowest net interest income.",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY i.Net_Int_Inc ASC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "I'm interested in the three banks with the least intangible assets, can you list their names?",
+    "query": "SELECT b.Stk_Name, s.Intang_Assets FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY s.Intang_Assets  LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Regarding total assets, can you tell me which bank ranks third among all banks?",
+    "query": "SELECT b.Stk_Name, s.Tot_Assets FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Tot_Assets IS NOT NULL ORDER BY s.Tot_Assets DESC  LIMIT 1 OFFSET 2;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest net income from fees and commissions?",
+    "query": "SELECT b.Stk_Name, i.Fee_Com_Net_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY i.Fee_Com_Net_Inc DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the lowest total amount of loans and advances?",
+    "query": "SELECT b.Stk_Name, s.Loans_Adv FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY s.Loans_Adv ASC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the top three banks in terms of total assets.",
+    "query": "SELECT b.Stk_Name, s.Tot_Assets  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY s.Tot_Assets DESC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the bank with the largest total assets and the bank with the smallest total assets.",
+    "query": "SELECT b.Stk_Name, s.Tot_Assets  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code   WHERE s.Tot_Assets = (SELECT MAX(Tot_Assets) FROM Balance_Sheet) UNION ALL  SELECT b.Stk_Name, s.Tot_Assets  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  WHERE s.Tot_Assets = (SELECT MIN(Tot_Assets) FROM Balance_Sheet);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Give me the name of the bank with the highest net interest income.",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY i.Net_Int_Inc DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest employee salary expenditure in cash?",
+    "query": "SELECT b.Stk_Name, c.Cash_Pay_Emp FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code ORDER BY c.Cash_Pay_Emp DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Calculate the total net interest income of all banks.",
+    "query": "SELECT SUM(Net_Int_Inc) AS Total_Net_Int_Inc FROM Income_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Calculate the proportion of net interest income for China Construction Bank in all banks.",
+    "query": "SELECT b.Stk_Name,  (i.Net_Int_Inc / (SELECT SUM(Net_Int_Inc) FROM Income_Statement)) AS Market_Share_Proportion FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE b.Stk_Name = 'China Construction Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Calculate the proportion of the net interest income sum of the top three banks in the total net interest income of all banks.",
+    "query": "SELECT SUM(Market_Share_Proportion) as Sum_Market_Share_Percentage FROM (SELECT b.Stk_Name, (i.Net_Int_Inc / (SELECT SUM(Net_Int_Inc) FROM Income_Statement)) AS Market_Share_Proportion FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY Market_Share_Proportion DESC LIMIT 3);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the total amount of due from interbank deposits and borrowings from other financial institutions for each bank?",
+    "query": "SELECT b.Stk_Name, s.IB_Deposits + s.Bor_Funds_Oth_FIs AS Total_IB_and_Borrowings  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find out which bank has the highest sum of deferred tax assets and deferred tax liabilities.",
+    "query": "SELECT b.Stk_Name, (s.Def_IT_Assets + s.Def_IT_Liab) AS Deferred_Tax_Total  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY Deferred_Tax_Total DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the largest sum of other assets and long-term equity investments?",
+    "query": "SELECT b.Stk_Name, (s.Oth_Assets + s.LT_Eq_Invest) AS Combined_Asset  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY Combined_Asset DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List the top three banks with the highest sum of trading financial assets and derivative financial assets.",
+    "query": "SELECT b.Stk_Name, (s.Trad_FAs + s.Deriv_Assets) AS Total  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY Total DESC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the bank with the largest difference between total assets and total liabilities.",
+    "query": "SELECT b.Stk_Name, (s.Tot_Assets - s.Tot_Liab) AS Net_Worth  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code   ORDER BY Net_Worth DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the bank with the largest absolute difference between derivative financial assets and derivative financial liabilities.",
+    "query": "SELECT b.Stk_Name, ABS(s.Deriv_Assets - s.Deriv_Liab) AS Derivatives_Difference  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code   ORDER BY Derivatives_Difference DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Do you know which bank has the largest absolute difference between borrowing from other financial institutions and deposits placed in other financial institutions?",
+    "query": "SELECT b.Stk_Name, ABS(s.IB_Dep_Oth_FIs - s.Bor_Funds_Oth_FIs) AS Difference  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY Difference DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "From the data, which bank seems to focus more on deferred income tax planning? That is, the bank with the largest absolute difference between deferred tax assets and liabilities.",
+    "query": "SELECT b.Stk_Name, ABS(s.Def_IT_Assets - s.Def_IT_Liab) AS Tax_Planning_Difference  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY Tax_Planning_Difference DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List the banks where the difference between fee and commission income and expenditure exceeds 500 million yuan.",
+    "query": "SELECT b.Stk_Name, (i.Fee_Com_Inc - i.Fee_Com_Exp) FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Fee_Com_Inc - i.Fee_Com_Exp > 500000000;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "non-interest income equals to operating income - net interest income; Find out the top three banks with the highest non-interest income.",
+    "query": "SELECT b.Stk_Name, (i.Oper_Rev - i.Net_Int_Inc) AS Non_Interest_Inc  FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY Non_Interest_Inc DESC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the smallest absolute difference between trading financial assets and trading financial liabilities?",
+    "query": "SELECT b.Stk_Name, ABS(s.Trad_FAs - s.Trad_Fin_Liab) AS Trading_Difference  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY Trading_Difference ASC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest proportion of interbank deposits to total liabilities?",
+    "query": "SELECT b.Stk_Name, (s.IB_Deposits / s.Tot_Liab) AS IB_Deposits_Percentage  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY IB_Deposits_Percentage DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Can you tell me which bank has the lowest proportion of fixed assets in total assets?",
+    "query": "SELECT b.Stk_Name, (s.Fix_Assets / s.Tot_Assets) AS Fixed_Assets_Percentage  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code  ORDER BY Fixed_Assets_Percentage  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the ratio of intangible assets to fixed assets for China Merchants Bank? I've heard they've been doing well recently.",
+    "query": "SELECT b.Stk_Name, (s.Intang_Assets / s.Fix_Assets) AS Asset_Ratio  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE b.Stk_Name = 'China Merchants Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "equity ratio = total owner's equity/total assets; Query the equity ratio of all banks.",
+    "query": "SELECT b.Stk_Name, (s.Tot_Own_Eq / s.Tot_Assets) AS Equity_Ratio  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Loan-to-deposit ratio = Loans and advances/Deposits; Find out which bank has the highest loan-to-deposit ratio?",
+    "query": "SELECT b.Stk_Name, (s.Loans_Adv / s.Acc_Deposits) AS Loan_To_Deposit_Ratio  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY Loan_To_Deposit_Ratio DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest ratio of total equity attributable to owners of the parent company to minority shareholders' equity?",
+    "query": "SELECT b.Stk_Name, (s.Own_Eq_Attr_Parent / s.Minor_Int_Eq) AS Ownership_Ratio  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Minor_Int_Eq > 0  ORDER BY Ownership_Ratio DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest ratio of interbank placements to loans and advances among all banks?",
+    "query": "SELECT b.Stk_Name, (s.IB_Deposits / s.Loans_Adv) AS Ratio  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY Ratio DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Non-interest income = Operating income - Net interest income; Which bank has the highest proportion of non-interest income to total operating income?",
+    "query": "SELECT b.Stk_Name, (i.Oper_Rev - i.Net_Int_Inc) / i.Oper_Rev AS NonInterest_Income_Ratio  FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code ORDER BY NonInterest_Income_Ratio DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find out the top three banks with the highest ratio of total profit to total assets.",
+    "query": "SELECT b.Stk_Name, (i.Tot_Profit / s.Tot_Assets) AS Profit_Asset_Ratio  FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code JOIN Balance_Sheet s ON b.Stk_Code = s.Stk_Code ORDER BY Profit_Asset_Ratio DESC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "net assets is owner's equity; List the top three banks with the highest ratio of capital reserve to net assets.",
+    "query": "SELECT b.Stk_Name, (s.Cap_Reserves / s.Tot_Own_Eq) AS CapReserve_Equity_Ratio  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY CapReserve_Equity_Ratio DESC LIMIT 3;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Give me the bank with the lowest net interest income.",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Net_Int_Inc = (SELECT MIN(Net_Int_Inc) FROM Income_Statement);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the average net interest income of all banks?",
+    "query": "SELECT AVG(Net_Int_Inc) AS Avg_Net_Interest_Income FROM Income_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank holds the amount of precious metal assets closest to the average level?",
+    "query": "SELECT b.Stk_Name, ABS(s.Prec_Metals - (SELECT AVG(Prec_Metals) FROM Balance_Sheet)) AS Diff FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY ABS(s.Prec_Metals - (SELECT AVG(Prec_Metals) FROM Balance_Sheet))  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "How many banks have net interest income above the average?",
+    "query": "SELECT COUNT(*) AS Count_Above_Mean FROM Income_Statement WHERE Net_Int_Inc > (SELECT AVG(Net_Int_Inc) FROM Income_Statement);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What are the names of the banks with net interest income above the average?",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Net_Int_Inc > (SELECT AVG(Net_Int_Inc) FROM Income_Statement);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest proportion of real estate investment to its total assets in percentage?",
+    "query": "SELECT b.Stk_Name, (s.Inv_Real_Estate / s.Tot_Assets) * 100 AS RealEstate_Percentage  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code GROUP BY b.Stk_Name  ORDER BY RealEstate_Percentage DESC  LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the average operating income of all banks?",
+    "query": "SELECT AVG(Oper_Rev) AS Avg_Operational_Revenue  FROM Income_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the largest absolute gap of Total liabilities and owner's equity  compared to the average level of all banks?",
+    "query": "SELECT b.Stk_Name, ABS(s.Tot_Liab_Own_Eq - (SELECT AVG(Tot_Liab_Own_Eq) FROM Balance_Sheet)) AS Max_Difference  FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code ORDER BY Max_Difference DESC LIMIT 1;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find out which banks have total owner's equity above the industry average.",
+    "query": "SELECT b.Stk_Name, s.Tot_Own_Eq FROM Basic_Info b JOIN Balance_Sheet s on b.Stk_Code = s.Stk_Code WHERE s.Tot_Own_Eq > (SELECT AVG(Tot_Own_Eq) FROM Balance_Sheet);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "How many banks have net interest income above the median?",
+    "query": "SELECT COUNT(*) AS Count_Above_Median FROM Income_Statement  WHERE Net_Int_Inc > (SELECT Net_Int_Inc FROM (SELECT Net_Int_Inc, PERCENT_RANK() OVER (ORDER BY Net_Int_Inc) AS percentile FROM Income_Statement) AS Ranked WHERE percentile = 0.5);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What are the names of the banks where the net interest income exceeds the median?",
+    "query": "SELECT b.Stk_Name, i.Net_Int_Inc FROM Basic_Info b JOIN Income_Statement i ON b.Stk_Code = i.Stk_Code WHERE i.Net_Int_Inc > (SELECT Net_Int_Inc FROM (SELECT Net_Int_Inc, PERCENT_RANK() OVER (ORDER BY Net_Int_Inc) AS percentile FROM Income_Statement) AS Ranked WHERE percentile = 0.5);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Query the net cash flow from operating activities.",
+    "query": "SELECT Net_CF_Op FROM Cash_Flow_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Query the cash inflow and outflow from operating activities.",
+    "query": "SELECT Op_CF_Sub, Op_CF_Out_Sub FROM Cash_Flow_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the cash inflow related to other activities in operation.",
+    "query": "SELECT Cash_Oth_Oper_Activities FROM Cash_Flow_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "total cash outflow of a bank is the sum of subtotal cash outflow from perational activities, investments activities and financing activities; What percentage of total cash outflow of all banks is from investment activities?",
+    "query": "SELECT (SUM(Inv_CF_Out_Sub) / SUM(Op_CF_Out_Sub + Inv_CF_Out_Sub + Fin_CF_Out_Sub)) * 100 AS Percentage  FROM Cash_Flow_Statement;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which bank has the highest net cash flow from operating activities?",
+    "query": "SELECT b.Stk_Name, c.Net_CF_Op FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Net_CF_Op = (SELECT MAX(Net_CF_Op) FROM Cash_Flow_Statement);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "total cash outflow = cash outflow from operational activities + cash outflow from investments activities  + cash outflow from financing activities; What percentage of China Merchants Bank's total cash outflow is from investment activities?",
+    "query": "SELECT (c.Inv_CF_Out_Sub / (c.Op_CF_Out_Sub + c.Inv_CF_Out_Sub + c.Fin_CF_Out_Sub)) * 100 AS Percentage  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE b.Stk_Name = 'China Merchants Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List the top five banks with the highest net cash flow from operating activities.",
+    "query": "SELECT b.Stk_Name, c.Net_CF_Op  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code  ORDER BY c.Net_CF_Op DESC  LIMIT 5;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the sum cash inflow from investment activities of Shanghai Pudong Development Bank and Huaxia Bank?",
+    "query": "SELECT SUM(c.Inv_CF_In_Sub)  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE b.Stk_Name IN ('Shanghai Pudong Development Bank', 'Huaxia Bank');"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "What is the absolute difference in net cash flow from operating activities between Ping An Bank and Bank of Ningbo?",
+    "query": "SELECT ABS((SELECT c.Net_CF_Op FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE b.Stk_Name = 'Ping An Bank') -  (SELECT c.Net_CF_Op FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE b.Stk_Name = 'Bank of Ningbo')) AS Difference;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "total cash inflow of a bank equals to cash inflow from operational activities plus cash inflow plus investments activities and cash inflow from financing activities; What is the proportion of cash inflow from operating activities to total cash inflow for China Everbright Bank?",
+    "query": "SELECT b.Stk_Name, (c.Op_CF_Sub / (c.Op_CF_Sub + c.Inv_CF_In_Sub + c.Fin_CF_In_Sub)) AS Percentage  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code  WHERE b.Stk_Name = 'China Everbright Bank';"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "How many banks have positive cash flow from operating activities?",
+    "query": "SELECT COUNT(*)  FROM Cash_Flow_Statement WHERE Net_CF_Op > 0;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "How many banks have cash inflow from investing activities exceeding that from operating activities?",
+    "query": "SELECT COUNT(*)  FROM Cash_Flow_Statement WHERE Inv_CF_In_Sub > Op_CF_Sub;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which banks have net cash flows from operating activities exceeding 10 million yuan, and their cash outflows from investment activities exceed cash inflows from operating activities?",
+    "query": "SELECT b.Stk_Name, c.Net_CF_Op, c.Inv_CF_Out_Sub, c.Op_CF_Sub FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Net_CF_Op > 10000000 AND c.Inv_CF_Out_Sub > c.Op_CF_Sub;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "total cash inflow = cash inflow from operational activities + cash inflow from investments activities  + cash inflow from financing activities; Which five banks have the highest proportion of cash inflows from investing activities to their total cash inflows?",
+    "query": "SELECT b.Stk_Name, (c.Inv_CF_In_Sub / (c.Op_CF_Sub + c.Inv_CF_In_Sub + c.Fin_CF_In_Sub)) AS Ratio  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code ORDER BY Ratio DESC  LIMIT 5;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which banks have net cash flow from operating activities below the industry average?",
+    "query": "SELECT b.Stk_Name, c.Net_CF_Op FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Net_CF_Op < (SELECT AVG(Net_CF_Op) FROM Cash_Flow_Statement);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which five banks have the largest difference between cash outflows and inflows from investment activities?",
+    "query": "SELECT b.Stk_Name, (c.Inv_CF_Out_Sub - c.Inv_CF_In_Sub) AS Difference  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code ORDER BY Difference DESC  LIMIT 5;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List the top five banks with the highest sum of cash inflow from operating activities, investing activities, and financing activities.",
+    "query": "SELECT b.Stk_Name, (c.Op_CF_Sub + c.Inv_CF_In_Sub + c.Fin_CF_In_Sub) AS Total_Inflows  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code ORDER BY Total_Inflows DESC  LIMIT 5;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which banks have cash inflow from investment activities that exceeds the sum of cash inflow from operating and financing activities?",
+    "query": "SELECT b.Stk_Name, c.Inv_CF_In_Sub, (c.Op_CF_Sub + c.Fin_CF_In_Sub) FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Inv_CF_In_Sub > (c.Op_CF_Sub + c.Fin_CF_In_Sub);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "How many banks have positive net cash flow from operating activities but negative cash inflow from investing activities?",
+    "query": "SELECT COUNT(b.Stk_Name)  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Net_CF_Op > 0 AND c.Inv_CF_In_Sub < 0;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Divide all banks by the net cash flow generated by operating activities into either 'Positive' or 'Negative', and calculate the number of banks in each group.",
+    "query": "SELECT CASE WHEN Net_CF_Op > 0 THEN 'Positive' ELSE 'Negative' END AS CashFlow_Status, COUNT(*)  FROM Cash_Flow_Statement GROUP BY CashFlow_Status;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Which banks have the highest cash outflow from investment activities among all banks?",
+    "query": "SELECT b.Stk_Name, c.Inv_CF_Out_Sub FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Inv_CF_Out_Sub = (SELECT MAX(Inv_CF_Out_Sub) FROM Cash_Flow_Statement);"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Calculate the difference between the cash inflow from operating activities of each bank and the average of all banks.",
+    "query": "SELECT b.Stk_Name, c.Op_CF_Sub - AVG(c.Op_CF_Sub) OVER() AS Difference_From_Avg  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "List the banks where cash inflow from investment activities exceeds cash inflow from financing activities and cash inflow from operating activities exceeds cash inflow from investment activities.",
+    "query": "SELECT b.Stk_Name, c.Inv_CF_In_Sub, c.Fin_CF_In_Sub, c.Op_CF_Sub FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code WHERE c.Inv_CF_In_Sub > c.Fin_CF_In_Sub AND c.Op_CF_Sub > c.Inv_CF_In_Sub;"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Calculate the percentile ranking of cash outflows from investment activities for each bank among all banks.",
+    "query": "SELECT b.Stk_Name, PERCENT_RANK() OVER (ORDER BY c.Inv_CF_Out_Sub) AS Percentile_Rank_Outflows  FROM Basic_Info b JOIN Cash_Flow_Statement c ON b.Stk_Code = c.Stk_Code"
+  },
+  {
+    "db_id": "Bank_Financials",
+    "question": "Find the banks whose cash inflow from operating activities is more than the cash inflow from investment activities of any other bank.",
+    "query": "SELECT DISTINCT B.Stk_Name, C.Op_CF_Sub FROM Basic_Info B JOIN Cash_Flow_Statement C ON B.Stk_Code = C.Stk_Code WHERE NOT EXISTS (SELECT 1 FROM Basic_Info bi JOIN Cash_Flow_Statement ci ON bi.Stk_Code = ci.Stk_Code WHERE B.Stk_Name != bi.Stk_Name AND C.Op_CF_Sub <= ci.Inv_CF_In_Sub);"
+  }
+]
